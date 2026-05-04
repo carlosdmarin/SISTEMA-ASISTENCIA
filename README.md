@@ -71,5 +71,5 @@ Una aplicación móvil (inicialmente solo versión para computadora).
 - El sistema debe funcionar correctamente incluso sin conexión a internet (local).
 
   # IMAGEN DEL NEGOCIO
-![imagen](imagenes/imagen_norkys.avif)
+![imagen](imagenes/)
 
