@@ -125,43 +125,86 @@ cp .env.example .env
 
 ## Base de datos
 ```sql
-create database senai_asistencia;
-use senai_asistencia;
+-- =============================================
+-- CREACIÓN DE LA BASE DE DATOS
+-- =============================================
+
+CREATE DATABASE IF NOT EXISTS sistema_de_asistencia
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE utf8mb4_general_ci;
+
+USE sistema_de_asistencia;
 
 
-create table cargo (
-id_cargo int auto_increment primary key,
-nombre_cargo varchar(50) not null
+-- =============================================
+-- TABLA: TURNO 
+-- =============================================
+
+CREATE TABLE TURNO(
+id_turno INT PRIMARY KEY AUTO_INCREMENT,
+nombre_turno VARCHAR(100)NOT NULL,
+hora_inicio TIME NOT NULL,
+hora_salida TIME NOT NULL,
+tolerancia_minutos INT DEFAULT 10
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-create table empleado(
-id_empleado int primary key auto_increment,
-nombre varchar(100) not null,
-apellido varchar(100) not null,
-dni varchar(8) unique not null,
-celular varchar(20),
-correo varchar (100) not null unique,
-id_cargo int not null,
-fecha_registro timestamp default current_timestamp,
-foreign key (id_cargo) references cargo(id_cargo)
+
+
+-- =============================================
+-- TABLA: CARGO
+-- =============================================
+
+CREATE TABLE CARGO (
+    id_cargo INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_cargo VARCHAR(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-create table usuario(
-id_usuario int auto_increment primary key,
-roles enum('admin', 'superadmin') default 'admin',
-nombre_usuario varchar (150) not null,
-clave varchar(250) not null
+-- =============================================
+-- TABLA: USUARIO
+-- =============================================
+
+CREATE TABLE USUARIO(
+id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+nombre VARCHAR(100) NOT NULL,
+clave VARCHAR(250) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-create table asistencia(
-id_asistencia int auto_increment primary key,
-fecha date not null,
-hora_entrada timestamp default current_timestamp not null,
-hora_salida timestamp default current_timestamp not null,
-estado enum('asistio', 'tardanza', 'falto') default 'falto' not null,
-id_empleado int not null,
-foreign key (id_empleado) references empleado(id_empleado)
+
+-- =============================================
+-- TABLA: EMPLEADO
+-- =============================================
+
+CREATE TABLE EMPLEADO (
+    id_empleado INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    dni VARCHAR(8) UNIQUE NOT NULL,
+    telefono VARCHAR(15) NOT NULL,
+    fecha_registro DATE DEFAULT (CURRENT_DATE) NOT NULL,
+    id_cargo INT NOT NULL,
+    id_turno INT NOT NULL,
+	FOREIGN KEY (id_turno) REFERENCES TURNO(id_turno),
+    FOREIGN KEY (id_cargo) REFERENCES CARGO(id_cargo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- =============================================
+-- TABLA: ASISTENCIA
+-- =============================================
+
+CREATE TABLE ASISTENCIA (
+    id_asistencia INT AUTO_INCREMENT PRIMARY KEY,
+    id_empleado INT NOT NULL,
+    fecha DATE DEFAULT (CURRENT_DATE) NOT NULL,
+    hora_entrada TIME DEFAULT (CURRENT_TIME) NULL,
+    hora_salida TIME NULL,
+    estado enum('asistio', 'tardanza', 'falto') default 'falto' not null,
+    FOREIGN KEY (id_empleado) REFERENCES EMPLEADO(id_empleado) ON DELETE CASCADE,
+    UNIQUE KEY unique_asistencia_dia (id_empleado, fecha)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
 ```
 
 ### Diagrama Entidad-Relacion (DER)
