@@ -111,8 +111,8 @@ El sistema aplica **POO** y **MVC** implementado desde cero. Los 4 pilares de PO
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/ojitoslanda/employee-attendance-system.git
-cd employee-attendance-system
+git clone https://github.com/carlosdmarin/SISTEMA-ASISTENCIA.git
+cd SISTEMA-ASISTENCIA
 
 # 2. Configurar variables de entorno
 cp .env.example .env
