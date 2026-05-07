@@ -1,17 +1,12 @@
 # SISTEMA DE REGISTROS DE EMPLEADOS Y ASISTENCIAS
 
 ## Descripcion del negocio
-Nombre: Norkys SAC <br>
-Norky's es una empresa que se dedica a la venta de pollo a la brasa. Cuenta con una cadena de restaurantes de comida rápida distribuidos en varias ciudades del Perú. Su especialidad es el pollo a la brasa, que acompañan con papas fritas, ensalada fresca y diferentes cremas. Además de atender en sus locales, también ofrecen servicio de delivery y recojo en tienda para mayor comodidad de los clientes.
+
 
 ## Identificar el problema y solución
-En Norky's existe un problema principal: la falta de un registro adecuado de los empleados. Actualmente, no llevan un control formal que les permita saber quiénes trabajan, qué horarios cumplen, cuántas horas han laborado o si han faltado algún día. Esto provoca problemas como demoras en el pago de salarios, asignación incorrecta de turnos, dificultad para calcular horas extras y confusión al momento de gestionar vacaciones o permisos. En resumen, al no tener un registro organizado del personal, la administración del restaurante se vuelve desordenada y propensa a errores. la solucion que planteo es: Es que para solucionar este problema, se propone desarrollar e implementar un sistema informático de registro de empleados diseñado específicamente para las necesidades de Norky's. Este sistema permitirá llevar un control formal y automatizado de toda la información del personal, incluyendo datos personales, asistencia diaria, turno de trabajo, horas extras y faltas. Con esta herramienta, la administración podrá acceder rápidamente a reportes organizados, reducir errores en los salarios, asignar turnos de manera eficiente y mantener un orden general en la gestión del personal. De esta forma, el sistema busca eliminar el desorden administrativo y minimizar los errores que actualmente afectan el funcionamiento del restaurante.
+
 
 # Preanálisis
-Necesidades
-
-Actualmente, Norky's necesita un sistema que le permita registrar y controlar a todos sus empleados de forma ordenada. Las principales necesidades son:
-
 Llevar un control diario de la asistencia de cada trabajador (entrada, salida, faltas y tardanzas).
 Registrar los horarios y turnos asignados a cada empleado.
 Calcular de forma automática las horas extras trabajadas.
