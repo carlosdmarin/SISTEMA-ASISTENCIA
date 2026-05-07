@@ -206,6 +206,6 @@ CREATE TABLE ASISTENCIA (
 
  
 ### Modelo Relacional (MR)
-![MODELO_RELACIONAL](https://raw.githubusercontent.com/ojitoslanda/testing/refs/heads/master/img/db.png)
+![MODELO_RELACIONAL]()
 
 ### Cardinalidades
