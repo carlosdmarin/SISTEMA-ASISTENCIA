@@ -1,11 +1,22 @@
 # SISTEMA DE REGISTROS DE EMPLEADOS Y ASISTENCIAS
 
 ## Descripcion del negocio
+### Nombre: (Buscando empresa...)
 
+### Giro: 
+Software de gestión de recursos humanos para pequeñas y medianas empresas (pymes), restaurantes, tiendas, consultorías y equipos remotos.
+
+### Propósito:
+Centralizar el control de asistencia, horarios, y datos de empleados en un solo lugar, reemplazando hojas de Excel, papel o relojes biométricos costosos
 
 ## Identificar el problema y solución
-
-
+| Problema | Descripción |
+|----------|-------------|
+| Registros manuales | Los empleados anotan su entrada/salida en hojas de papel o Excel, generando errores, olvidos o falsificaciones. |
+| Falta de transparencia | Los trabajadores no ven su historial de asistencias ni acumulado de retardos. |
+| Cálculo laborioso | RR.HH. o el dueño pierde horas sumando horas extra, tardanzas y deducciones. |
+| Dificultad con equipos remotos | Sin forma confiable de saber si un empleado trabajó desde casa. |
+| Pérdida de información | Los registros en papel se extravían o dañan. |
 # Preanálisis
 Llevar un control diario de la asistencia de cada trabajador (entrada, salida, faltas y tardanzas).
 Registrar los horarios y turnos asignados a cada empleado.
