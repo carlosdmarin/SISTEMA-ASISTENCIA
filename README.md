@@ -131,8 +131,12 @@ cp .env.example .env
 
 ## Base de datos
 ```sql
+
 -- =============================================
--- CREACIÓN DE LA BASE DE DATOS
+-- BASE DE DATOS COMPLETA - SISTEMA DE ASISTENCIAS
+
+-- =============================================
+-- 1. CREACIÓN DE LA BASE DE DATOS
 -- =============================================
 
 CREATE DATABASE IF NOT EXISTS sistema_de_asistencia
@@ -141,45 +145,33 @@ DEFAULT COLLATE utf8mb4_general_ci;
 
 USE sistema_de_asistencia;
 
-
 -- =============================================
--- TABLA: TURNO 
+-- 2. TABLAS ESTRUCTURALES
 -- =============================================
 
-CREATE TABLE TURNO(
-id_turno INT PRIMARY KEY AUTO_INCREMENT,
-nombre_turno VARCHAR(100)NOT NULL,
-hora_inicio TIME NOT NULL,
-hora_salida TIME NOT NULL,
-tolerancia_minutos INT DEFAULT 10
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- TABLA: TURNO
+CREATE TABLE TURNO (
+    id_turno INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_turno VARCHAR(100) NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_salida TIME NOT NULL,
+    tolerancia_minutos INT DEFAULT 10
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
-
--- =============================================
 -- TABLA: CARGO
--- =============================================
-
 CREATE TABLE CARGO (
     id_cargo INT AUTO_INCREMENT PRIMARY KEY,
     nombre_cargo VARCHAR(50) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- =============================================
 -- TABLA: USUARIO
--- =============================================
+CREATE TABLE USUARIO (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    clave VARCHAR(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE USUARIO(
-id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-nombre VARCHAR(100) NOT NULL,
-clave VARCHAR(250) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
--- =============================================
 -- TABLA: EMPLEADO
--- =============================================
-
 CREATE TABLE EMPLEADO (
     id_empleado INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -189,25 +181,21 @@ CREATE TABLE EMPLEADO (
     fecha_registro DATE DEFAULT (CURRENT_DATE) NOT NULL,
     id_cargo INT NOT NULL,
     id_turno INT NOT NULL,
-	FOREIGN KEY (id_turno) REFERENCES TURNO(id_turno),
+    FOREIGN KEY (id_turno) REFERENCES TURNO(id_turno),
     FOREIGN KEY (id_cargo) REFERENCES CARGO(id_cargo)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- =============================================
--- TABLA: ASISTENCIA
--- =============================================
-
+-- TABLA: ASISTENCIA (actualizada con hora_entrada NULL permitido)
 CREATE TABLE ASISTENCIA (
     id_asistencia INT AUTO_INCREMENT PRIMARY KEY,
     id_empleado INT NOT NULL,
     fecha DATE DEFAULT (CURRENT_DATE) NOT NULL,
-    hora_entrada TIME DEFAULT (CURRENT_TIME) NULL,
+    hora_entrada TIME NULL DEFAULT NULL,
     hora_salida TIME NULL,
-    estado enum('asistio', 'tardanza', 'falto') default 'falto' not null,
+    estado ENUM('asistio', 'tardanza', 'falto') NOT NULL,
     FOREIGN KEY (id_empleado) REFERENCES EMPLEADO(id_empleado) ON DELETE CASCADE,
     UNIQUE KEY unique_asistencia_dia (id_empleado, fecha)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 
